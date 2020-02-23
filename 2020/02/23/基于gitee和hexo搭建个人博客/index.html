@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="胡圣的博客">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        基于gitee和hexo搭建个人博客 - husheng3921的博客 | husheng3921&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry, Stay Foolish! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Hu Sheng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境搭建"><span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、安装hexo"><span class="toc-text">1、安装hexo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、建站"><span class="toc-text">2、建站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、配置"><span class="toc-text">3、配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、命令"><span class="toc-text">4、命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、部署"><span class="toc-text">5、部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#末尾"><span class="toc-text">末尾</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry, Stay Foolish! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        基于gitee和hexo搭建个人博客
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-02-23 22:07:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#入门" title="入门">入门</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#git" title="git">git</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近折腾博客，开始采用github page方式的静个博客，但是考虑到国内访问GitHub速度慢且不稳定，故在原有GitHub和hexo(AirCloud搭建的博客基础上，迁移到码云Gitee上，这里有些坑提出来，供大家参考。参考博客：<a href="https://segmentfault.com/a/1190000018662692?utm_source=tag-newest" target="_blank" rel="noopener">基于Gitee+Hexo搭建个人博客</a></p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>打开hexo官网<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo doc</a>;参照指南安装好node，git。注意国内访问npm镜像较慢，切换成淘宝镜像源，执行下面命令：<br>切换淘宝镜像<br><code>$ npm config set registry https://registry.npm.taobao.org</code><br>查看是否切换到淘宝镜像<br><code>$ npm info underscore</code>  </p>
+<h4 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h4><p>使用npm安装hexo<br><code>$ npm install -g hexo-cli</code><br>这里可能会出错，<a href="https://blog.csdn.net/sunxiaoju/article/details/102568075" target="_blank" rel="noopener">类似于错误</a>中的错误，参考链接中输入命令行：<br><code>$ set-ExecutionPolicy RemoteSigned 选择A</code>  </p>
+<h4 id="2、建站"><a href="#2、建站" class="headerlink" title="2、建站"></a>2、建站</h4><p>hexo安装完后，执行下面命令：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>执行完后生成如下：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h4><p>主要是在_config.yml修改属性<br>具体说明参考<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">hexo官方配置</a>，我使用的主题是<a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">aircloud</a>,主题配置参考下面命令：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd themes</span><br><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;aircloud&#x2F;hexo-theme-aircloud.git  </span><br><span class="line">然后修改_config.yml中属性theme: hexo-theme-aircloud</span><br></pre></td></tr></table></figure>
+<p>我这里给出我主要的配置信息供参考：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: husheng3921</span><br><span class="line">subtitle: Stay Hungry, Stay Foolish!</span><br><span class="line">keywords:</span><br><span class="line">author: Hu Sheng</span><br><span class="line">language: zh</span><br><span class="line">timezone: &#39;&#39;</span><br><span class="line"></span><br><span class="line"># Site settings</span><br><span class="line"># 网站综合内容设置：</span><br><span class="line">SEOTitle: husheng3921的博客 | husheng3921&#39;s Blog</span><br><span class="line">email: husheng3921@gmail.com</span><br><span class="line">description: &quot;胡圣的博客&quot;</span><br><span class="line"># keyword: &quot;腾讯&quot;</span><br><span class="line"></span><br><span class="line"># 头像图片地址</span><br><span class="line">sidebar-avatar: img&#x2F;avatar.jpg</span><br><span class="line">avatar_style:</span><br><span class="line">  radius: true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># search博客内容搜索</span><br><span class="line">search:</span><br><span class="line">  path: search.json</span><br><span class="line">  field: post</span><br><span class="line"></span><br><span class="line"># SNS settings</span><br><span class="line"># 一些社交平台地址，支持以下几种：</span><br><span class="line">weibo_username:     5012869548</span><br><span class="line">github_username:    husheng3921</span><br><span class="line"># twitter_username:   iconie_alloy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 评论</span><br><span class="line">comment:</span><br><span class="line">   type: disqus</span><br><span class="line">   script: &#39;https:&#x2F;&#x2F;airclouds-blog.disqus.com&#x2F;embed.js&#39;</span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: hexo-theme-aircloud</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  # gitee.com</span><br><span class="line">  repo: https:&#x2F;&#x2F;gitee.com&#x2F;husheng3921&#x2F;husheng3921</span><br><span class="line">  # repo: https:&#x2F;&#x2F;github.com&#x2F;husheng3921&#x2F;husheng3921.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、命令"><a href="#4、命令" class="headerlink" title="4、命令"></a>4、命令</h4><p>主要有新建、本地运行、部署,<a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">详见</a>；  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;filename&gt;  新建</span><br><span class="line">hexo server  本地运行</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、部署"><a href="#5、部署" class="headerlink" title="5、部署"></a>5、部署</h4><ul>
+<li>GitHub部署<br>在github新建仓库，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在_config.yml中修改  </span><br><span class="line">deploy:</span><br><span class="line">    repo: 新建的博客GitHub仓库地址</span><br><span class="line">运行部署  </span><br><span class="line">hexo clean  </span><br><span class="line">hexo deploy。</span><br></pre></td></tr></table></figure></li>
+<li>Gitee上部署<br><strong>坑一</strong><br>在gitee上新建仓库时注意仓库名字要与你的Gitee账户一致，例如我的仓库名字husheng3921(与账户名一样),这样才能保证Gitee创建博客的域名就是<code>http://husheng3921.gitee.io</code>,否则后面会带有后缀，例如仓库名:blog，系统会生成<code>http://husheng3921.gitee.io/blog</code>,你还需要在_confiy.yml中root属性配置blog值。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在_config.yml中修改  </span><br><span class="line">deploy:</span><br><span class="line">    repo: 新建的博客gitee仓库地址</span><br><span class="line">运行部署  </span><br><span class="line">hexo clean  </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+点击博客仓库-服务-Gitee Pages<br><img src="/img/gitee1.png" alt=""><br><img src="/img/gitee2.jpg" alt=""><br>启动成功后如下<br><img src="/img/gitee3.jpg" alt=""><br><strong>坑二</strong><br>每次hexo deploy部署后，都要点击更新按钮，内容才回更新。这个比github上麻烦一点。 </li>
+</ul>
+<h3 id="末尾"><a href="#末尾" class="headerlink" title="末尾"></a>末尾</h3><p>距上一次在CSDN上写博客已经快3年了，上次写的也是入门级教程，感觉逻辑和语言还是有些小毛病，争取一次次改进，锻炼自己的书写能力，通过写博客来加深自己对知识的理解。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/5012869548">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/husheng3921">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
