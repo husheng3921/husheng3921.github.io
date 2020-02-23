@@ -48,7 +48,7 @@
         
 <div class="nav" id="nav">
     <div class="avatar-name">
-        <div class="avatar ">
+        <div class="avatar radius">
             <img src="/img/avatar.jpg" />
         </div>
         <div class="name">
@@ -117,7 +117,9 @@
         <!-- Main Content -->
         <div id='tag_cloud' class="tags">
     
-    <a href="#入门" title="入门" rel="1">入门</a>
+    <a href="#入门" title="入门" rel="2">入门</a>
+    
+    <a href="#测试" title="测试" rel="1">测试</a>
     
 </div>
 
@@ -137,6 +139,41 @@
         <a href="/2020/02/23/test/">
             <h2 class="post-title">
                 test
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2020/02/23/test2/">
+            <h2 class="post-title">
+                test2
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+</div>
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="测试">
+                    <span class="tag-text">测试</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2020/02/23/test2/">
+            <h2 class="post-title">
+                test2
             </h2>
             
         </a>
@@ -198,7 +235,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.xml"
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = false
 </script>
