@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="胡圣的博客">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        linux命令行与shell脚本学习2 - husheng3921的博客 | husheng3921&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry, Stay Foolish! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Hu Sheng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文件操作"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件组织"><span class="toc-text">文件组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwd、which"><span class="toc-text">pwd、which</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ls、cd、du"><span class="toc-text">ls、cd、du</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less、cat显示文件内容"><span class="toc-text">less、cat显示文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head与tail显示文件头和尾"><span class="toc-text">head与tail显示文件头和尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch与mkdir新建文件与文件夹"><span class="toc-text">touch与mkdir新建文件与文件夹</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry, Stay Foolish! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        linux命令行与shell脚本学习2
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-03 20:08:22</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h3 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h3><p>root根目录下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 &#x2F;]# ls</span><br><span class="line">bin  boot  dev  dfs  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br></pre></td></tr></table></figure>
+<p><img src="/img/linux-2-1.png" alt="">  </p>
+<ul>
+<li>bin：英语 binary 的缩写，表示”二进制文件”（我们知道可执行文件是二进制的）。包含了会被所有用户使用的可执行程序；</li>
+<li>boot：英语 boot 表示”启动”，包含与 Linux 启动密切相关的文件；</li>
+<li>dev：英语 device 的缩写，表示”设备”，包含外设。它里面的子目录，每一个对应一个外设。比如代表我们的光盘驱动器的文件就会出现在这个目录下面；</li>
+<li>etc：etc 有点不能顾名思义了。因为 etc 是法语 et cetera 的缩写，翻成英语就是”and so on”，表示”…等等”，包含系统的配置文件。至于为什么在 /etc 下面存放配置文件， 按照原始的 Unix 说法（Linux 文件结构参考 Unix 的教学实现 MINIX），这下面放的都是一堆零零碎碎的东西， 就叫 etc 好了。哈哈 ，这其实是个历史遗留；</li>
+<li>home：英语 home 表示”家”，用户的私人目录。之前我们提过一些，在这个目录中，我们放置私人的文件，有点类似 Windows 中的 Documents 这个文件夹，也叫”我的文档”。Linux 中的每个用户（除了大管家用户，也就是超级用户 root 外。root 因为太厉害，拥有所有权限，所以比较”任性”，跟普通用户不住在一起）都在 home 目录下有自己的一个私人目录。比如我的用户名是 oscar，那么我的私人目录就是 /home/oscar；如果另一个用户叫 john，那么他的私人目录就是 /home/john；</li>
+<li>lib：英语 library 的缩写，表示”库”，包含被程序所调用的库文件。例如 .so 结尾的文件，在 Windows 下这样的库文件是以 .dll 结尾的；</li>
+<li>media：英语 media 表示”媒体”。当一个可移动的外设（比如 USB 盘、SD 卡、DVD、光盘等等）插入电脑时，Linux 就可以让我们通过 media 的子目录来访问这些外设中的内容。</li>
+<li>mnt：英语 mount 的缩写，表示”挂载”。有点类似 media，但一般用于临时挂载一些装置；</li>
+<li>opt：英语 optional application software package 的缩写，表示”可选的应用软件包”，用于安装多数第三方软件和插件；</li>
+<li>root：英语”根”的意思。超级用户 root 的家目录/主目录。一般用户的家目录是位于 /home 下，不过 root 用户是个例外。之前的课程我们也提到过，root 是整个系统的超级用户，拥有一切权限，初学者请慎用此用户模式；</li>
+<li>sbin：英语 system binary 的缩写，表示”系统二进制文件”。比起 bin 目录多了一个前缀 system，所以包含的是系统级的重要可执行程序；</li>
+<li>srv：英语 service的缩写，表示”服务”。包含一些网络服务启动之后所需要取用的数据；</li>
+<li>tmp：英语 temporary 的缩写，表示”临时的”。普通用户和程序存放临时文件的地方；</li>
+<li>usr：英语 Unix Software Resource 的缩写，表示”Unix 操作系统软件资源”（也是个历史遗留的命名）。这个目录是最庞大的目录之一。有点类似 Windows 中的 C:\Windows 和 C:\Program Files 这两个文件夹的集合。在这里面安装了大部分用户要调用的程序；</li>
+<li>var：英语 variable 的缩写，表示”动态的，可变的”。通常包含程序的数据，比如一些 log（日志）文件，记录电脑中发生了什么事。 </li>
+</ul>
+<h3 id="pwd、which"><a href="#pwd、which" class="headerlink" title="pwd、which"></a>pwd、which</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pwd 显示当前目录的路径 </span><br><span class="line">[root@node1 ~]# pwd</span><br><span class="line">&#x2F;root  </span><br><span class="line">pwd 就是 print work directory,打印当前工作目录  </span><br><span class="line"></span><br><span class="line">which 获取命令可执行文件的位置  </span><br><span class="line">[root@node1 ~]# which bash</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="ls、cd、du"><a href="#ls、cd、du" class="headerlink" title="ls、cd、du"></a>ls、cd、du</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls 列出文件和目录  </span><br><span class="line">ls -a 显示所有文件和目录，包括隐藏的  </span><br><span class="line">ls -l 显示文件和目录详细信息列表  </span><br><span class="line">ls -lh 适合人阅读的  </span><br><span class="line">ls -lt 按最近修改时间排序显示  </span><br><span class="line">ls -alht 综合使用</span><br></pre></td></tr></table></figure>
+<p>例子如图所示:<br><img src="/img/linux-2-2.png" alt="">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">cd change directory ,切换目录   </span><br><span class="line">[root@node1 ~]# cd testHadoop&#x2F;</span><br><span class="line">[root@node1 testHadoop]# pwd</span><br><span class="line">&#x2F;root&#x2F;testHadoop  </span><br><span class="line"></span><br><span class="line">相对路径</span><br><span class="line">cd testHadoop testHadoop 位于root目录，如果退出了root目录，就不能再执行cd testHadoop  </span><br><span class="line"></span><br><span class="line"> 绝对路径  </span><br><span class="line">[root@node1 home]# cd &#x2F;root&#x2F;testHadoop&#x2F;</span><br><span class="line">[root@node1 testHadoop]# pwd</span><br><span class="line">&#x2F;root&#x2F;testHadoop  </span><br><span class="line"></span><br><span class="line">重回家目录  </span><br><span class="line">cd &#x2F;home&#x2F;husheng  或&#x2F;root  </span><br><span class="line">cd ~  </span><br><span class="line">cd  </span><br><span class="line"></span><br><span class="line">du disk usage的缩写，表示磁盘使用&#x2F;占用  </span><br><span class="line">du -a 显示文件和目录的大小  </span><br><span class="line">du -h 适合人阅读的  </span><br><span class="line">du -s 只显示总计大小  </span><br><span class="line">[root@node1 testHadoop]# du -ah</span><br><span class="line">4.0K    .&#x2F;myFile.txt</span><br><span class="line">4.0K    .</span><br><span class="line">[root@node1 testHadoop]# du -hs</span><br><span class="line">4.0K    .</span><br></pre></td></tr></table></figure>
+
+<h3 id="less、cat显示文件内容"><a href="#less、cat显示文件内容" class="headerlink" title="less、cat显示文件内容"></a>less、cat显示文件内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat 命令一次性显示所有内容，  </span><br><span class="line">cat 文件名，即可查看文件内容  </span><br><span class="line">cat -n 文件内容显示加上行号</span><br></pre></td></tr></table></figure>
+<p><img src="/img/linux-2-4.png" alt="">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">less 相较于cat不会全部显示，而是分页显示，more命令也类似功能，但是只能向前翻页，没法后退。  </span><br><span class="line">cd &#x2F;usr&#x2F;log  </span><br><span class="line">less yum.log  </span><br><span class="line">常用快捷键：  </span><br><span class="line">空格键：文件内容读取下一个终端屏幕的行数，相当于前进一个屏幕（页）。很常用的快捷键。与键盘上的 PageDown（下一页）效果一样；</span><br><span class="line">回车键：文件内容读取下一行，也就是前进一行，与键盘上的向下键效果是一样的；</span><br><span class="line">d 键：前进半页（半个屏幕）；</span><br><span class="line">b 键：后退一页，与键盘上的 PageUp（上一页）效果一样；</span><br><span class="line">y 键：后退一行，与键盘上的向上键效果是一样的；</span><br><span class="line">u 键：后退半页（半个屏幕）；</span><br><span class="line">q 键：停止读取文件，中止 less 命令。  </span><br><span class="line">高级用法：  </span><br><span class="line">&#x3D; 显示当前是多少行，总共多少行  </span><br><span class="line">&#x2F; 进入搜索模式，按n键跳到下一个符合要求的位置， N跳转上一个位置</span><br></pre></td></tr></table></figure>
+<p><img src="/img/linux-2-5.png" alt=""><br><img src="/img/linux-2-6.png" alt=""><br><img src="/img/linux-2-7.png" alt=""></p>
+<h3 id="head与tail显示文件头和尾"><a href="#head与tail显示文件头和尾" class="headerlink" title="head与tail显示文件头和尾"></a>head与tail显示文件头和尾</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">head yum.log  显示文件头10行  </span><br><span class="line">head -n yum.log 显示文件指定头n行  </span><br><span class="line"></span><br><span class="line">tail yum.log 显示文件尾10行  </span><br><span class="line">tail -n yum.log 显示文件尾指定行数  </span><br><span class="line">tail -f yum.log 实时跟踪yum.log更新，ctr + C 结束</span><br></pre></td></tr></table></figure>
+<p><img src="/img/linux-2-8.png" alt=""></p>
+<h3 id="touch与mkdir新建文件与文件夹"><a href="#touch与mkdir新建文件与文件夹" class="headerlink" title="touch与mkdir新建文件与文件夹"></a>touch与mkdir新建文件与文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">touch newfile 创建一个空文件  </span><br><span class="line">touch newfile1 newfile2 创建多个文件  </span><br><span class="line">mkdir newfolder 创建一个空文件夹  </span><br><span class="line">mkdir newfolder1 newfolder2 创建多个文件夹  </span><br><span class="line">mkdir -p &#x2F;husheng&#x2F;cnhk 递归创建子文件夹</span><br></pre></td></tr></table></figure>
+<p><img src="/img/linux-2-9.png" alt=""></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/5012869548">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/husheng3921">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

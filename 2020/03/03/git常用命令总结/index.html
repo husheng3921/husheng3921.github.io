@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="胡圣的博客">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        git常用命令总结 - husheng3921的博客 | husheng3921&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry, Stay Foolish! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Hu Sheng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改"><span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#暂存修改"><span class="toc-text">暂存修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销修改"><span class="toc-text">撤销修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支操作"><span class="toc-text">分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-查看-合并分支"><span class="toc-text">创建&#x2F;查看&#x2F;合并分支</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置多个远程仓库"><span class="toc-text">配置多个远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#覆盖远程仓库"><span class="toc-text">覆盖远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看操作日志"><span class="toc-text">查看操作日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rebase"><span class="toc-text">rebase</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry, Stay Foolish! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        git常用命令总结
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-03 22:17:12</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#git" title="git">git</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p><img src="/img/git-1-1.png" alt=""></p>
+<ul>
+<li>工作区 Workspace  </li>
+<li>暂存区index/stage  </li>
+<li>本地仓库 repository  </li>
+<li>远程仓库 remote  </li>
+</ul>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="暂存修改"><a href="#暂存修改" class="headerlink" title="暂存修改"></a>暂存修改</h3><p>操作一览表  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">创建stash    git stash  </span><br><span class="line">删除         git stash drop stash@&#123;num&#125;  </span><br><span class="line">应用         git stash apply stash@&#123;num&#125;  </span><br><span class="line">查看         git stash list  </span><br><span class="line">还原上一个暂存并删除暂存(如无conflict)    git stash pop</span><br></pre></td></tr></table></figure>
+
+<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><ul>
+<li>还未提交到暂存区<br>即还没有使用git add ,可以使用<br><code>git checkout -- filename.txt</code><br>丢弃当前工作区文件的修改，文件参数也可以是* 放弃全部。</li>
+<li>还未提交仓库<br>已经add到暂存，但是为commit可以使用  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD filename.txt  </span><br><span class="line">git checkout -- filename.txt</span><br></pre></td></tr></table></figure>
+先reset撤掉暂存区（add反操作），然后再checkout撤回工作区。</li>
+<li>已提交到仓库<br>可以指定版本回退<br><code>git reset --hard xxx版本号</code>  </li>
+<li>撤销之前某次提交<br>git revert撤销一个提交的同时会创建一个新的提交，这是一个安全的方法，因为它不会重写提交历史。但实现上和reset是完全不同的。它撤销这个提交引入的更改，然后在最后加上一个撤销了更改的新提交，而不是从项目历史中移除这个提交。<br><code>git revert 46af7z6</code><br>相较于 reset ， revert不会改变项目历史，对那些已经发布到共享仓库的提交来说这是一个安全的操作。其次 git revert 可以将提交历史中的任何一个提交撤销、而 reset会把历史上某个提交及之后所有的提交都移除掉，这太野蛮了。<br>相比 reset，它不会改变现在的提交历史。因此， revert 可以用在公共分支上， reset 应该用在私有分支上。<h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><h3 id="创建-查看-合并分支"><a href="#创建-查看-合并分支" class="headerlink" title="创建/查看/合并分支"></a>创建/查看/合并分支</h3>操作一览  <table>
+<thead>
+<tr>
+<th>操作</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看分支</td>
+<td>git branch</td>
+</tr>
+<tr>
+<td>查看本地和远程分支</td>
+<td>git branch -a</td>
+</tr>
+<tr>
+<td>在target分支上创建分支，没有则从当前分支</td>
+<td>git branch &lt;branch-name&gt; &lt;target-branch&gt;</td>
+</tr>
+<tr>
+<td>创建并切换分支</td>
+<td>git checkout -b &lt;branch-name&gt;</td>
+</tr>
+<tr>
+<td>合并某分支到当前分支</td>
+<td>git merge &lt;branch-name&gt;</td>
+</tr>
+<tr>
+<td>删除分支，只能删参与了合并的</td>
+<td>git branch -d &lt;branch-name&gt;</td>
+</tr>
+<tr>
+<td>强行删除</td>
+<td>git branch -D &lt;branch-name&gt;</td>
+</tr>
+<tr>
+<td>删除远程分支</td>
+<td>git push origin –delete &lt;remote-branch-name&gt;</td>
+</tr>
+<tr>
+<td>显示远程分支</td>
+<td>git remote show origin</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="配置多个远程仓库"><a href="#配置多个远程仓库" class="headerlink" title="配置多个远程仓库"></a>配置多个远程仓库</h2><p><code>git remote set-url --add origin https://github.com/78778443/gittest.git</code>  </p>
+<h2 id="覆盖远程仓库"><a href="#覆盖远程仓库" class="headerlink" title="覆盖远程仓库"></a>覆盖远程仓库</h2><p><code>本地仓库版本落后于远程仓库版本时，  
+git push -f 强制推送</code></p>
+<h2 id="查看操作日志"><a href="#查看操作日志" class="headerlink" title="查看操作日志"></a>查看操作日志</h2><pre><code>git relog 查看操作日志，git log 只能查看版本日志  
+git checkout -b  retest_v3  b52b955 找回分支 后两项：分支名称，提交id</code></pre><h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><ul>
+<li>git merge命令合并代码之后，版本记录会按照时间顺序排序，并自动产生一个Merge branch的版本；</li>
+<li>git rebase命令合并代码之后，版本记录会将目标分支的版本放在后面，然后再将当前分支的版本记录放在前边。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/5012869548">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/husheng3921">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

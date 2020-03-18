@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="胡圣的博客">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        linux命令行与shell脚本学习1 - husheng3921的博客 | husheng3921&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry, Stay Foolish! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Hu Sheng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统介绍"><span class="toc-text">操作系统介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作系统定义"><span class="toc-text">操作系统定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#电脑启动顺序"><span class="toc-text">电脑启动顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux操作系统"><span class="toc-text">Linux操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是GNU"><span class="toc-text">什么是GNU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix、GNU、Linux的关系"><span class="toc-text">Unix、GNU、Linux的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux发行版"><span class="toc-text">Linux发行版</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry, Stay Foolish! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        linux命令行与shell脚本学习1
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-03 15:59:48</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="操作系统介绍"><a href="#操作系统介绍" class="headerlink" title="操作系统介绍"></a>操作系统介绍</h1><h2 id="操作系统定义"><a href="#操作系统定义" class="headerlink" title="操作系统定义"></a>操作系统定义</h2><ul>
+<li>从操作系统层往两侧看：负责管理协调硬件、软件等计算机资源的工作  </li>
+<li>从上往下看：为上层的应用程序和用户提供简单易用的服务 </li>
+<li>从下往上看：操作系统系统软件，而不是硬件  </li>
+</ul>
+<h2 id="电脑启动顺序"><a href="#电脑启动顺序" class="headerlink" title="电脑启动顺序"></a>电脑启动顺序</h2><ol>
+<li>启动界面  </li>
+<li>操作系统的启动</li>
+<li>其他程序(系统上的软件)的启动<br>示意图如图：<br><img src="/img/linux-1-1.jpg" alt=""></li>
+</ol>
+<p>启动界面的有一小段程序是运行在主板上的，也就是通常我们说的BIOS界面。如果装了双系统，启动时候，BootLoader会提示你做选择，选择哪个系统。<br>百度百科：<br>“Bootloader 是在操作系统内核运行之前运行的一段小程序。通过这段小程序，我们可以初始化硬件设备，建立内存空间的映射图，从而将系统的软硬件环境带到一个合适的状态，以便为最终调用操作系统内核准备好正确的环境。通常，Bootloader 是严重地依赖于硬件而实现的，特别是在嵌入式领域。”<br>双系统启动示意图：<br><img src="/img/linux-1-2.jpg" alt="">  </p>
+<h2 id="Linux操作系统"><a href="#Linux操作系统" class="headerlink" title="Linux操作系统"></a>Linux操作系统</h2><h3 id="什么是GNU"><a href="#什么是GNU" class="headerlink" title="什么是GNU"></a>什么是GNU</h3><p>GNU实际上是”GNU is Not Unix”,GNU是一个免费的操作系统，而且它还是自由的。<br>GNU项目的创建者是Richard Stallman;与他相关的主要有以下：  </p>
+<ul>
+<li>自由软件基金会(Free Software Fundation)的主席  </li>
+<li>GNU项目创始人，所写作的GNU通用公共许可证(GNU GPL)是采用最广泛的自由软件许可证。遵循一种CopyRight:可拷贝、可修改、可出售，但是改进和修改的源码必须向用户公开。保证了自由软件的传播性。</li>
+<li>主要作品：Emacs,GCC(GNU Compiler Collection,GNU编译器集合),GDB(GNU Project Debugger,GNU项目调试器)。  </li>
+<li>GNU项目首要目的是创建一个类Unix系统。 </li>
+</ul>
+<h3 id="Unix、GNU、Linux的关系"><a href="#Unix、GNU、Linux的关系" class="headerlink" title="Unix、GNU、Linux的关系"></a>Unix、GNU、Linux的关系</h3><ul>
+<li>Unix系统是一款商业操作系统  </li>
+<li>Linux系统是Linus Torvalds开发的类Unix操作系统。  </li>
+<li>GNU 项目（开源的各种程序）+ Linux （操作系统内核）= GNU/Linux 这一个完整的操作系统。  </li>
+</ul>
+<p>用一张图总结下他们的关系：<br><img src="/img/linux-1-3.jpg" alt=""></p>
+<h3 id="Linux发行版"><a href="#Linux发行版" class="headerlink" title="Linux发行版"></a>Linux发行版</h3><p>Linux系统是开源自由的，用户可以修改源码定制自己的系统。下面列举主要发行版：  </p>
+<ul>
+<li>RedHat:红帽，2018年被IBM高价收购；性能稳定，老牌的Linux发行版；目前主要两个系列：由RedHat公司提供收费的Redhat EnterPrise Linux,社区开发免费的Fedora Core。</li>
+<li>Fedora: Redhat的免费后继版。安装简单，更新频率快，不稳定。  </li>
+<li>CentOS：适用于服务器的 RedHat 版本是 RedHat Enterprise Linux（表示”红帽企业 Linux”，简称 RHEL），这是个收费的操作系统。CentOS 可以算是 RHEL 的克隆版，它最大的好处是免费。CentOS 是 Community Enterprise Operating System 的缩写，表示”社区企业操作系统”，兼顾社区与企业特性。稳定、长期更新、保守性被企业普遍使用。  </li>
+<li>DeBian：最早由 Ian Murdock 于 1993 年创建。可以算是迄今为止，最遵循 GNU 规范的 Linux 系统。Debian 系统分为三个版本分支（branch）：stable，testing 和 unstable。  </li>
+<li>Ubuntu：Debian 的后继或一个分支。</li>
+<li>Deepin：由武汉深之度科技有限公司开发的，为祖国自豪一下。易用。Deepin 不仅仅对最优秀的开源产品进行集成和配置，还开发了基于 HTML5 技术的全新桌面环境、系统设置中心、以及音乐播放器，视频播放器，软件中心等一系列面向日常使用的应用软件。  </li>
+<li>FreeBSD：首先要强调的是：FreeBSD 不是一个 Linux 系统！因为 FreeBSD 的用户也相当多，其许多特性都与 Linux 相类似。事实上，Linux 和 BSD（Berkeley Software Distribution）均是 Unix 的演化分支。并且，Linux 中相当多的特性和功能（比如用于配置 DNS 的 Bind 软件）都是取自于 BSD 的。而 FreeBSD 便是 BSD 家族中最出名，用户数量最多的一个发行版。苹果的 macOS 的内核 Darwin 以前也部分地借鉴了 FreeBSD。  </li>
+</ul>
+<p>用图表示各发行版的关系：<br><img src="/img/linux-1-4.jpg" alt="">  </p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/5012869548">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/husheng3921">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
