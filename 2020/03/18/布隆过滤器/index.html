@@ -11,7 +11,7 @@
 
     <title>
         
-        linux命令行与shell脚本学习4 - husheng3921的博客 | husheng3921&#39;s Blog
+        布隆过滤器 - husheng3921的博客 | husheng3921&#39;s Blog
         
     </title>
 
@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布隆过滤器的实现"><span class="toc-text">布隆过滤器的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布隆过滤器参数及误判分析"><span class="toc-text">布隆过滤器参数及误判分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
 </div>
     
 </div>
@@ -124,18 +124,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        linux命令行与shell脚本学习4
+        布隆过滤器
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-03-18 14:00:42</span></span>
+        <span class="attr">发布于：<span>2020-03-18 14:41:01</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#linux" title="linux">linux</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+        <a class="tag" href="/tags/#海量数据处理" title="海量数据处理">海量数据处理</a>
         <span>/</span>
         
         
@@ -145,7 +142,27 @@
 </span>
     </div>
     <div class="post-content ">
-        
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>布隆过滤器强大的作用就是在大数据集合中判断一个元素是否存在，具有快速、比哈希表节省空间的优点，但具有一定的误判率(判断元素在，它不一定在，概率比较小，但说它不在，则一定不在)。大多数生产环境下是可以接受的。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>网页爬虫对URL的去重，避免爬取相同URL地址</li>
+<li>过滤黑名单，比如有100亿个URL的黑名单，要求对输入的URL进行检测，并判断输入的URL是否属于黑名单中的URL。</li>
+<li>缓存穿透，将所有可能存在的数据缓存放到布隆过滤器中，当黑客访问不存在的缓存时迅速返回避免缓存及DB挂掉;当大量访问的数据不在缓存中会直接打到数据库，导致数据库崩溃。<h2 id="布隆过滤器的实现"><a href="#布隆过滤器的实现" class="headerlink" title="布隆过滤器的实现"></a>布隆过滤器的实现</h2><ol>
+<li>建立bit数组<br>使用布隆过滤器首先要建立bit数组，位图的方式，节约空间，利用基本的位图数组实现，数组元素值都初始化0，长度为m。<ol start="2">
+<li>哈希函数<br>实现布隆过滤器还需要一组哈希函数f1,f2,..fn</li>
+<li>元素加入布隆过滤器<br>样本元素集合X，X1经过若干哈希函数计算的值后C1、C2、、Cn；然后对m取模，得到bit数组中的索引，依次将该索引处值赋值1。如图<br><img src="/img/bloom-1.png" alt=""></li>
+<li>判断元素是否在过滤器中<br>对于要判断的元素Xi,经过给定哈希函数计算值后取模得到数组索引值index1,index2,,indexn,取出相应索引处的数组元素值，若都为1，则存在布隆过滤器中，否则不存在。<h2 id="布隆过滤器参数及误判分析"><a href="#布隆过滤器参数及误判分析" class="headerlink" title="布隆过滤器参数及误判分析"></a>布隆过滤器参数及误判分析</h2></li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<p>涉及到的参数主要有：<code>bit数组的大小m,哈希函数的个数n,预期失误率p,样本个数N</code>  </p>
+<ul>
+<li>bit数组的大小m<br>如果bit数组的大小m过小，那么将用于建立布隆过滤器的样本全部输入进去之后，所建立出来的布隆过滤器中bit数组中的大部分、乃至全部bit都被标为1，此时误报率将非常高，甚至达到100%，相当于把任何输入放进去，都会判定为true。<br>反之，如果bit数组的大小m过大，又会浪费内存，这与使用布隆过滤器的初衷就相违背了。</li>
+<li>哈希函数的个数n<br>如果哈希函数的个数过多，那么在利用样本建立布隆过滤器的过程中，bit数组中的大部分位置会被迅速填满，导致误报率变大。<br>如果哈希函数的个数过少，那么对各个样本采集的特征过少，也会影响失误率。<br>因此，一定存在一个比较合适的n，使得在bit数组大小m和样本个数N确定的情况下，使得失误率降到一个很低的水平。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]<a href="https://www.jianshu.com/p/7ce887ab4089" target="_blank" rel="noopener">https://www.jianshu.com/p/7ce887ab4089</a><br>[2]<a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md</a></p>
+
         
         <br />
         <div id="comment-container">
