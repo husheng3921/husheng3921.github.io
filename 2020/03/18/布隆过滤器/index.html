@@ -146,22 +146,23 @@
 <h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
 <li>网页爬虫对URL的去重，避免爬取相同URL地址</li>
 <li>过滤黑名单，比如有100亿个URL的黑名单，要求对输入的URL进行检测，并判断输入的URL是否属于黑名单中的URL。</li>
-<li>缓存穿透，将所有可能存在的数据缓存放到布隆过滤器中，当黑客访问不存在的缓存时迅速返回避免缓存及DB挂掉;当大量访问的数据不在缓存中会直接打到数据库，导致数据库崩溃。<h2 id="布隆过滤器的实现"><a href="#布隆过滤器的实现" class="headerlink" title="布隆过滤器的实现"></a>布隆过滤器的实现</h2><ol>
-<li>建立bit数组<br>使用布隆过滤器首先要建立bit数组，位图的方式，节约空间，利用基本的位图数组实现，数组元素值都初始化0，长度为m。<ol start="2">
-<li>哈希函数<br>实现布隆过滤器还需要一组哈希函数f1,f2,..fn</li>
-<li>元素加入布隆过滤器<br>样本元素集合X，X1经过若干哈希函数计算的值后C1、C2、、Cn；然后对m取模，得到bit数组中的索引，依次将该索引处值赋值1。如图<br><img src="/img/bloom-1.png" alt=""></li>
-<li>判断元素是否在过滤器中<br>对于要判断的元素Xi,经过给定哈希函数计算值后取模得到数组索引值index1,index2,,indexn,取出相应索引处的数组元素值，若都为1，则存在布隆过滤器中，否则不存在。<h2 id="布隆过滤器参数及误判分析"><a href="#布隆过滤器参数及误判分析" class="headerlink" title="布隆过滤器参数及误判分析"></a>布隆过滤器参数及误判分析</h2></li>
-</ol>
-</li>
-</ol>
-</li>
+<li>缓存穿透，将所有可能存在的数据缓存放到布隆过滤器中，当黑客访问不存在的缓存时迅速返回避免缓存及DB挂掉;当大量访问的数据不在缓存中会直接打到数据库，导致数据库崩溃。  </li>
 </ul>
-<p>涉及到的参数主要有：<code>bit数组的大小m,哈希函数的个数n,预期失误率p,样本个数N</code>  </p>
+<h2 id="布隆过滤器的实现"><a href="#布隆过滤器的实现" class="headerlink" title="布隆过滤器的实现"></a>布隆过滤器的实现</h2><ul>
+<li>建立bit数组<br> 使用布隆过滤器首先要建立bit数组，位图的方式，节约空间，利用基本的位图数组实现，数组元素值都初始化0，长度为m。</li>
+<li>哈希函数<br> 实现布隆过滤器还需要一组哈希函数f1,f2,..fn</li>
+<li>元素加入布隆过滤器<br> 样本元素集合X，X1经过若干哈希函数计算的值后C1、C2、、Cn；然后对m取模，得到bit数组中的索引，依次将该索引处值赋值1。如图<br> <img src="/img/bloom-1.png" alt=""></li>
+<li>判断元素是否在过滤器中<br> 对于要判断的元素Xi,经过给定哈希函数计算值后取模得到数组索引值index1,index2,,indexn,取出相应索引处的数组元素值，若都为1，则存在布隆过滤器中，否则不存在。  </li>
+</ul>
+<h2 id="布隆过滤器参数及误判分析"><a href="#布隆过滤器参数及误判分析" class="headerlink" title="布隆过滤器参数及误判分析"></a>布隆过滤器参数及误判分析</h2><p>涉及到的参数主要有：<code>bit数组的大小m,哈希函数的个数n,预期失误率p,样本个数N</code>  </p>
 <ul>
 <li>bit数组的大小m<br>如果bit数组的大小m过小，那么将用于建立布隆过滤器的样本全部输入进去之后，所建立出来的布隆过滤器中bit数组中的大部分、乃至全部bit都被标为1，此时误报率将非常高，甚至达到100%，相当于把任何输入放进去，都会判定为true。<br>反之，如果bit数组的大小m过大，又会浪费内存，这与使用布隆过滤器的初衷就相违背了。</li>
-<li>哈希函数的个数n<br>如果哈希函数的个数过多，那么在利用样本建立布隆过滤器的过程中，bit数组中的大部分位置会被迅速填满，导致误报率变大。<br>如果哈希函数的个数过少，那么对各个样本采集的特征过少，也会影响失误率。<br>因此，一定存在一个比较合适的n，使得在bit数组大小m和样本个数N确定的情况下，使得失误率降到一个很低的水平。</li>
+<li>哈希函数的个数n<br>如果哈希函数的个数过多，那么在利用样本建立布隆过滤器的过程中，bit数组中的大部分位置会被迅速填满，导致误报率变大。<br>如果哈希函数的个数过少，那么对各个样本采集的特征过少，也会影响失误率。<br>因此，一定存在一个比较合适的n，使得在bit数组大小m和样本个数N确定的情况下，使得失误率降到一个很低的水平。  </li>
 </ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]<a href="https://www.jianshu.com/p/7ce887ab4089" target="_blank" rel="noopener">https://www.jianshu.com/p/7ce887ab4089</a><br>[2]<a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://www.jianshu.com/p/7ce887ab4089" target="_blank" rel="noopener">https://www.jianshu.com/p/7ce887ab4089</a>  </li>
+<li><a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md</a></li>
+</ul>
 
         
         <br />
