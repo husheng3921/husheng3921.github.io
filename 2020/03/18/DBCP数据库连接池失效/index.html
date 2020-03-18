@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="胡圣的博客">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DBCP数据库连接池失效 - husheng3921的博客 | husheng3921&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry, Stay Foolish! </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Hu Sheng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深层次原因"><span class="toc-text">深层次原因</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry, Stay Foolish! </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DBCP数据库连接池失效
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-18 08:51:35</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#数据库连接池" title="数据库连接池">数据库连接池</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在项目中，spring框架，使用的是dbcp数据库连接池，数据库是mysql，项目部署测试期间，过了一晚上不登录和使用，第二天首次登录(账号、密码正确)会报登录错误，但是再次点击登录会登录成功，查看tomcat日志发现communication connection timeout，数据库连接超时。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>当时网上找了很多解决办法，都是改些dbcp的时间配置，改了之后，过一天测试还是没用，最后找到了配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id&#x3D;&quot;dataSource&quot; class&#x3D;&quot;org.apache.commons.dbcp.BasicDataSource&quot;</span><br><span class="line">        destroy-method&#x3D;&quot;close&quot;</span><br><span class="line">        p:driverClassName&#x3D;&quot;com.mysql.jdbc.Driver&quot;</span><br><span class="line">        p:url&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;ychbh&quot;</span><br><span class="line">        p:username&#x3D;&quot;root&quot;</span><br><span class="line">        p:password&#x3D;&quot;xxxx&quot;</span><br><span class="line">        p:validationQuery&#x3D;&quot;SELECT 1&quot;</span><br><span class="line">        p:testOnBorrow&#x3D;&quot;true&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>加了<code>validationQuery=&quot;SELECT 1&quot;,testOnBorrow=&quot;true&quot;</code>查看dbcp两个属性源码  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">     * Sets the &#123;@link #testOnBorrow&#125; property. This property determines</span><br><span class="line">     * whether or not the pool will validate objects before they are borrowed</span><br><span class="line">     * from the pool. For a &lt;code&gt;true&lt;&#x2F;code&gt; value to have any effect, the </span><br><span class="line">     * &lt;code&gt;validationQuery&lt;&#x2F;code&gt; property must be set to a non-null string.</span><br><span class="line">     * </span><br><span class="line">     * @param testOnBorrow new value for testOnBorrow property</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public synchronized void setTestOnBorrow(boolean testOnBorrow) &#123;</span><br><span class="line">        this.testOnBorrow &#x3D; testOnBorrow;</span><br><span class="line">        if (connectionPool !&#x3D; null) &#123;</span><br><span class="line">            connectionPool.setTestOnBorrow(testOnBorrow);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">源码中的注释指testOnBorrow 指明在从池中取出连接前进行检验,校验连接是否有效，</span><br><span class="line">如果检验无效,则从池中去除连接并尝试取出另一个. 设置true表示进行校验，</span><br><span class="line">同时要设置validationQuery 该选项用来验证数据库连接的有效性</span><br><span class="line"> &#x2F;**</span><br><span class="line">     * The SQL query that will be used to validate connections from this pool</span><br><span class="line">     * before returning them to the caller.  If specified, this query</span><br><span class="line">     * &lt;strong&gt;MUST&lt;&#x2F;strong&gt; be an SQL SELECT statement that returns at least</span><br><span class="line">     * one row.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    protected volatile String validationQuery &#x3D; null;</span><br><span class="line">注释中说这个SQL查询会校验来自连接池中的连接是否有效，如果指定，这个查询必须返回最少一行，</span><br><span class="line">也就是项目中报的错-数据库连接超时，现在有了这两条属性，数据库连接时会自己校验这个连接是否有效而不是抛给用户；</span><br><span class="line">项目中未修改配置前我们第一次点报连接超时，第二次点击登录成功，说明我们第一次点击相当于执行了检验连接无效，</span><br><span class="line">第二次重新获取新的连接，但是这个不应该抛给用户，应由连接池来检验。</span><br></pre></td></tr></table></figure>
+<h2 id="深层次原因"><a href="#深层次原因" class="headerlink" title="深层次原因"></a>深层次原因</h2><p>MySQL默认设置下，当一个连接超过8小时后，Mysql会自动断开连接；而DBCP连接池依然认为断开的连接有效。<br>既然是这样子，那我们程序员在对数据库操作前，需要对数据库连接做个校验或判断是否有效，也就是dbcp上面加了两个属性。这里附上C3p0的配置。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#c3p0配置</span><br><span class="line">&lt;!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 --&gt;   </span><br><span class="line">&lt;property name&#x3D;&quot;maxIdleTime&quot;&gt;60&lt;&#x2F;property&gt;  </span><br><span class="line">&lt;!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，</span><br><span class="line">超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 0 --&gt;   </span><br><span class="line">&lt;property name&#x3D;&quot;checkoutTimeout&quot; value&#x3D;&quot;3000&quot;&#x2F;&gt;  </span><br><span class="line">&lt;!--c3p0将建一张名为Test的空表，并使用其自带的查询语句进行测试。</span><br><span class="line">如果定义了这个参数那么属性preferredTestQuery将被忽略。</span><br><span class="line">你不能在这张Test表上进行任何操作，它将只供c3p0测试使用。默认值: null --&gt;   </span><br><span class="line"> &lt;property name&#x3D;&quot;automaticTestTable&quot;&gt;Test&lt;&#x2F;property&gt;  </span><br><span class="line">&lt;!--因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的   </span><br><span class="line">　　时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable   </span><br><span class="line">　　等方法来提升连接测试的性能。Default: false --&gt;   </span><br><span class="line">&lt;property name&#x3D;&quot;testConnectionOnCheckout&quot;&gt;false&lt;&#x2F;property&gt;   </span><br><span class="line">&lt;!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false --&gt;   </span><br><span class="line">&lt;property name&#x3D;&quot;testConnectionOnCheckin&quot;&gt;true&lt;&#x2F;property&gt; </span><br><span class="line">&lt;!--每60秒检查所有连接池中的空闲连接。Default: 0 --&gt;   </span><br><span class="line">&lt;property name&#x3D;&quot;idleConnectionTestPeriod&quot;&gt;60&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/5012869548">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/husheng3921">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
